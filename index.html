@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyShop — E-Commerce</title>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fas fa-store"></i> MyShop
+        </div>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search products..." />
+        </div>
+        <div class="nav-actions">
+            <i class="fas fa-moon" title="Dark Mode (ထည့်ရန်)"></i>
+            <div class="cart-badge" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO BANNER ===== -->
+    <section class="hero">
+        <div>
+            <h1>Elevate Your Look.</h1>
+            <p id="heroTagline"></p>
+        </div>
+        <a href="#productGrid" class="btn">Shop Now →</a>
+    </section>
+
+    <!-- ===== MAIN CONTENT (Sidebar + Grid) ===== -->
+    <div class="main-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h3><i class="fas fa-tags"></i> Category</h3>
+                <label><input type="checkbox" value="Phones"/>Phones</label>
+                <label><input type="checkbox" value="Laptops"/>Laptops</label>
+                <label><input type="checkbox" value="Tablets"/>Tablets</label>
+                <label><input type="checkbox" value="Accessories"/>Accessories</label>
+                <label><input type="checkbox" value="Smartwatches"/>Smartwatches</label>
+            </div>
+            <div class="filter-group">
+                <h3><i class="fas fa-dollar-sign"></i> Price Range</h3>
+                <input type="range" class="price-slider" min="0" max="2000" value="2000" />
+                <div class="price-range-text">
+                    <span>$0</span>
+                    <span>$500</span>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3><i class="fas fa-sort"></i> Sort By</h3>
+                <select class="sort-select">
+                    <option value="price-low-high">Price: Low to High</option>
+                    <option value="price-high-low">Price: High to Low</option>
+                    <option value="rating-high">Rating: Highest</option>
+                </select>
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <main class="product-grid" id="productGrid">
+         
+        </main>
+    </div>
+
+    <!-- ===== CART DRAWER ===== -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <h2>
+            🛒 Your Cart
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </h2>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-bag" style="font-size: 48px; color: #ddd;"></i>
+                <p style="margin-top: 12px;">Cart is empty. Start shopping!</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn-checkout">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- ===== PRODUCT QUICK VIEW MODAL ===== -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <div class="modal-image">
+                    <img id="modalImg" src="" alt="Product" />
+                </div>
+                <div class="modal-info">
+                    <span class="modal-category" id="modalCategory">Category</span>
+                    <h2 id="modalName">Product Name</h2>
+                    <div class="modal-rating" id="modalRating">⭐ 0.0 (0)</div>
+                    <div class="modal-price" id="modalPrice">$0.00</div>
+                    <p class="modal-description" id="modalDescription">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <button class="modal-add-btn" id="modalAddBtn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- ===== CHECKOUT MODAL ===== -->
+    <div class="checkout-overlay" id="checkoutOverlay">
+        <div class="checkout-modal">
+            <button class="checkout-close" id="checkoutCloseBtn">&times;</button>
+            <h2>Checkout</h2>
+            <div class="checkout-body">
+                <div class="checkout-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="checkoutName" placeholder="John Doe" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="checkoutEmail" placeholder="john@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Shipping Address</label>
+                        <input type="text" id="checkoutAddress" placeholder="123 Main St, City" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="checkoutPhone" placeholder="+95 9 123 4567" required />
+                    </div>
+                </div>
+                <div class="checkout-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkoutItems"></div>
+                    <div class="checkout-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">$0.00</span>
+                    </div>
+                    <button class="checkout-place-btn" id="placeOrderBtn">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ORDER HISTORY MODAL ===== -->
+    <div class="history-overlay" id="historyOverlay">
+        <div class="history-modal">
+            <button class="history-close" id="historyCloseBtn">&times;</button>
+        <h2 style="display: flex; justify-content: space-between; align-items: center;">
+            <span>📋 Order History</span>
+            <button id="clearHistoryBtn" style="
+                background: #ef4444; 
+                color: white; 
+                border: none; 
+                padding: 6px 14px; 
+                border-radius: 6px; 
+                font-size: 13px; 
+                font-weight: 600; 
+                cursor: pointer;
+                transition: 0.3s;
+                margin-right: 40px;
+            ">Clear All</button>
+        </h2>
+        <div id="historyList">
+            <p style="text-align: center; color: var(--gray); padding: 40px 0;">No orders yet. Start shopping!</p>
+        </div>
+    </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="copy">&copy; 2026 MyShop. All rights reserved.</div>
+        <div class="social">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-twitter"></i>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
